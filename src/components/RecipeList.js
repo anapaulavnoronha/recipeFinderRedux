@@ -1,15 +1,24 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 // connect function to make the link to the component and the store
 import RecipeItem from "./RecipeItem";
 
 class RecipeList extends Component {
   render() {
-    console.log("this.props", this.props);
+    // console.log("this.props", this.props);
     return (
       <div>
+        {this.props.favoriteRecipes.length > 0 && (
+          <h4 className="link">
+            <Link to="/favorites">Favorites</Link>
+          </h4>
+        )}
+
         {this.props.recipes.map((recipe, index) => {
-          return <RecipeItem key={index} recipe={recipe} />;
+          return (
+            <RecipeItem key={index} recipe={recipe} favoriteButton={true} />
+          );
         })}
       </div>
     );
